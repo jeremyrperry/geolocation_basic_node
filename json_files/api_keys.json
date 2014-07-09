@@ -1,0 +1,5 @@
+{
+    "google":{"description": "Google Maps API Key", "display_name": "Google", "key": "", "limit_qty": "2500", "limit_time_unit": "86400"},
+    "mapquest": {"description": "MapQuest API Key", "display_name": "MapQuest", "key": "", "limit_qty": "5000", "limit_time_unit": "86400"},
+    "maxmind": {"description": "MaxMind API Key", "display_name": "MaxMind", "key": "", "limit_qty": "", "limit_time_unit": ""}
+}
