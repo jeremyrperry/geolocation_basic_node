@@ -1,0 +1,7 @@
+{
+    "devIpAddress": "38.102.2.2",
+    "mmdbPath": "/usr/local/lib/node_modules/geolocation_basic_node/binary_db/GeoLite2-City.mmdb",
+    "useMongo": false,
+    "mongoAuthentication": true,
+    "ipSource": "freegeoip"
+}

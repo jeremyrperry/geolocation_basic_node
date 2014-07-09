@@ -1,0 +1,30 @@
+{
+	"mysql": {
+		"localhost": {
+			"host":"",
+			"username":"",
+			"password":"",
+			"db":""
+		},
+		"production":{
+			"host":"",
+			"username":"",
+			"password":"",
+			"db":""
+		}
+	},
+	"mongo":{
+		"localhost":{
+			"host":"",
+			"username":"",
+			"password":"",
+			"db": ""
+		},
+		"production":{
+			"host":"",
+			"username":"",
+			"password":"",
+			"db": ""
+		}
+	}
+}
