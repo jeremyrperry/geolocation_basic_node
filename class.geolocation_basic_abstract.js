@@ -26,7 +26,7 @@ geolocation_basic_abstract = {
 	mmdbPath: null,
 	useMongo: false,
 	mongoAuthentication: true,
-	ipSource: 'binary',
+	ipSource: null,
 	headers: null,
 	request: null,
 	response: null,
@@ -685,11 +685,7 @@ geolocation_basic_abstract = {
                     binarySrc = req.binary_src;
                 }
                 mm_rec[binarySrc](ipAddress, function(err,record){
-                    console.log('received');
-                    console.log(err);
-                    console.log(record);
                     out.status = 'success';
-
                     out.results = {
                         'country':record.country.iso_code,
                         'state_region':record.subdivisions[0].iso_code,
@@ -705,7 +701,6 @@ geolocation_basic_abstract = {
 		};
 		var freegeoip = function(){
 			var freegeoipUrl = "http://freegeoip.net/json/"+ipAddress;
-			console.log(freegeoipUrl);
 			self.http.get(freegeoipUrl, function(res){
 				var json = '';
 				res.on('data', function(chunk){
@@ -777,7 +772,6 @@ geolocation_basic_abstract = {
 			//Query is run against the database tables.
 			var out = {};
 			var query = "select c.* from geolocation_ip_locations as l left join geolocation_cities as c on l.loc_id = c.id where INET_ATON("+self.db.escape(ipAddress)+") between l.start_ip_num and l.end_ip_num limit 1";
-			console.log(query);
 			self.db.query(query, function(err, results){
 				if(err || results.length < 1){
 					freegeoip();
