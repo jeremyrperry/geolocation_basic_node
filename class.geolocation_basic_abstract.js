@@ -1051,7 +1051,7 @@ geolocation_basic_abstract = {
 				}
 				else{
 					out.status = 'success';
-					out.results = res;
+					out.results = res[0];
 					self.finalStep(out, callback);
 				}
 			});
