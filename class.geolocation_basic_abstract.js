@@ -1347,10 +1347,12 @@ geolocation_basic_abstract = {
 			}
 		}
 		//IP address is set to an arbitrary value if a local dev environment is detected.
-		var convert = ['127.0.0.1', '::1'];
-		if(convert.indexOf(this.ipAddress) != -1){
-			this.ipAddress = this.devIpAddress;
-		}
+        for(var i=0; i<this.ipConvert.length; i++){
+            if(this.ipConvert[i].indexOf(this.ipAddress) != -1){
+                this.ipAddress = this.devIpAddress;
+            }
+        }
+        this.ipAddress = this.ipAddress.replace('::ffff:', '');
 		/*
 		var time = require('time');
 		this.now = new time.Date();

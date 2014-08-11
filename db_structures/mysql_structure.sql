@@ -6,7 +6,7 @@
 # http://code.google.com/p/sequel-pro/
 #
 # Host: lbs.cwjfeqo83snq.us-east-1.rds.amazonaws.com (MySQL 5.6.13-log)
-# Database: lbs
+# Database: geolocation_basic
 # Generation Time: 2014-06-12 19:09:25 +0000
 # ************************************************************
 
@@ -22,6 +22,8 @@
 
 # Dump of table geolocation_api_track
 # ------------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS 'geolocation_basic';
+USE geolocation_basic;
 
 DROP TABLE IF EXISTS `geolocation_api_track`;
 
