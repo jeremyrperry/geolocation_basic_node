@@ -28,4 +28,4 @@ node_modules
 binary_db/*.mmdb
 
 #Ignore customized files
-json_files/*
+json_files/*.json

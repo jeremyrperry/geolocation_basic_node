@@ -208,7 +208,12 @@ geolocation_basic_abstract = {
 						}
 					}
 				}
-				self.finalStep(output, callback);
+                if(callback){
+                    callback(output);
+                }
+                else{
+                    self.finalStep(output);
+                }
 			});
 		}).on('error', function(e){
 			output.status = 'error';
@@ -687,14 +692,40 @@ geolocation_basic_abstract = {
                 mm_rec[binarySrc](ipAddress, function(err,record){
                     out.status = 'success';
                     out.results = {
-                        'country':record.country.iso_code,
-                        'state_region':record.subdivisions[0].iso_code,
-                        'city':record.city.names.en,
-                        'postal_code':record.postal.code,
-                        'lat':record.location.latitude,
-                        'lng':record.location.longitude,
-                        'dma_code':record.location.metro_code
+                        'country':['country', 'iso_code'],
+                        'state_region':['subdivisions', 0, 'iso_code'],
+                        'city':['city', 'names', 'en'],
+                        'postal_code':['postal', 'code'],
+                        'lat':['location', 'latitude'],
+                        'lng':['location', 'longitude'],
+                        'dma_code':['location', 'metro_code']
                     };
+                    for(var r in out.results){
+                        var obj = null;
+                        var max = out.results[r].length;
+                        max--;
+                        for(var i=0; i<out.results[r].length; i++){
+                            var item = out.results[r][i];
+                            if(i == 0){
+                                if(typeof(record[item]) != 'undefined'){
+                                    obj = record[item];
+                                }
+                                else{
+                                    break;
+                                }
+                            }
+                            else{
+                                if(typeof(obj[item]) != 'undefined'){
+                                   obj = obj[item];
+                                }
+                                else{
+                                    obj = null;
+                                    break;
+                                }
+                            }
+                        }
+                        out.results[r] = obj;
+                    }
                     dataCheck(out);
                 });
             });
@@ -1459,6 +1490,9 @@ geolocation_basic_abstract = {
 						});
 					}
 				}
+                else{
+                    callback(row);
+                }
 			});
 		}
 		else{
